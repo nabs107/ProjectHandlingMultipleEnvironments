@@ -13,6 +13,10 @@
 		398CA0A22673719000D53732 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398CA0A02673719000D53732 /* Main.storyboard */; };
 		398CA0A42673719200D53732 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 398CA0A32673719200D53732 /* Assets.xcassets */; };
 		398CA0A72673719200D53732 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 398CA0A52673719200D53732 /* LaunchScreen.storyboard */; };
+		398CA0B0267377F000D53732 /* development-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 398CA0AF267377F000D53732 /* development-config.plist */; };
+		398CA0B4267378AF00D53732 /* uat-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 398CA0B3267378AF00D53732 /* uat-config.plist */; };
+		398CA0B6267378BF00D53732 /* release-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 398CA0B5267378BF00D53732 /* release-config.plist */; };
+		398CA0C52673807600D53732 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398CA0C42673807600D53732 /* AppEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,11 @@
 		398CA0A32673719200D53732 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		398CA0A62673719200D53732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		398CA0A82673719200D53732 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		398CA0AF267377F000D53732 /* development-config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "development-config.plist"; sourceTree = "<group>"; };
+		398CA0B3267378AF00D53732 /* uat-config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uat-config.plist"; sourceTree = "<group>"; };
+		398CA0B5267378BF00D53732 /* release-config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "release-config.plist"; sourceTree = "<group>"; };
+		398CA0B726737A0000D53732 /* AppEnvironment.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = AppEnvironment.map; sourceTree = "<group>"; };
+		398CA0C42673807600D53732 /* AppEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,7 @@
 		398CA0992673719000D53732 /* ProjectHandlingMultipleEnvironments */ = {
 			isa = PBXGroup;
 			children = (
+				398CA0AE2673771500D53732 /* configuration */,
 				398CA09A2673719000D53732 /* AppDelegate.swift */,
 				398CA09C2673719000D53732 /* SceneDelegate.swift */,
 				398CA09E2673719000D53732 /* ViewController.swift */,
@@ -67,7 +77,64 @@
 			path = ProjectHandlingMultipleEnvironments;
 			sourceTree = "<group>";
 		};
+		398CA0AE2673771500D53732 /* configuration */ = {
+			isa = PBXGroup;
+			children = (
+				398CA0C42673807600D53732 /* AppEnvironment.swift */,
+				398CA0B726737A0000D53732 /* AppEnvironment.map */,
+				398CA0AF267377F000D53732 /* development-config.plist */,
+				398CA0B3267378AF00D53732 /* uat-config.plist */,
+				398CA0B5267378BF00D53732 /* release-config.plist */,
+			);
+			path = configuration;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		398CA0B826737C0F00D53732 /* development-target */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-p ./configuration/development-config.plist -h ./configuration/AppEnvironment.map -n AppEnvironment -o ./configuration";
+			buildConfigurationList = 398CA0B926737C0F00D53732 /* Build configuration list for PBXLegacyTarget "development-target" */;
+			buildPhases = (
+			);
+			buildToolPath = ./configuration/configen;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = "development-target";
+			passBuildSettingsInEnvironment = 1;
+			productName = "development-target";
+		};
+		398CA0BC26737CC600D53732 /* uat-target */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-p ./configuration/uat-config.plist -h ./configuration/AppEnvironment.map -n AppEnvironment -o ./configuration";
+			buildConfigurationList = 398CA0BD26737CC600D53732 /* Build configuration list for PBXLegacyTarget "uat-target" */;
+			buildPhases = (
+			);
+			buildToolPath = ./configuration/configen;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = "uat-target";
+			passBuildSettingsInEnvironment = 1;
+			productName = "uat-target";
+		};
+		398CA0C026737CD500D53732 /* release-target */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-p ./configuration/release-config.plist -h ./configuration/AppEnvironment.map -n AppEnvironment -o ./configuration";
+			buildConfigurationList = 398CA0C126737CD600D53732 /* Build configuration list for PBXLegacyTarget "release-target" */;
+			buildPhases = (
+			);
+			buildToolPath = ./configuration/configen;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = "release-target";
+			passBuildSettingsInEnvironment = 1;
+			productName = "release-target";
+		};
+/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		398CA0962673719000D53732 /* ProjectHandlingMultipleEnvironments */ = {
@@ -99,6 +166,15 @@
 					398CA0962673719000D53732 = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					398CA0B826737C0F00D53732 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					398CA0BC26737CC600D53732 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					398CA0C026737CD500D53732 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 				};
 			};
 			buildConfigurationList = 398CA0922673718F00D53732 /* Build configuration list for PBXProject "ProjectHandlingMultipleEnvironments" */;
@@ -115,6 +191,9 @@
 			projectRoot = "";
 			targets = (
 				398CA0962673719000D53732 /* ProjectHandlingMultipleEnvironments */,
+				398CA0B826737C0F00D53732 /* development-target */,
+				398CA0BC26737CC600D53732 /* uat-target */,
+				398CA0C026737CD500D53732 /* release-target */,
 			);
 		};
 /* End PBXProject section */
@@ -124,8 +203,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				398CA0B6267378BF00D53732 /* release-config.plist in Resources */,
+				398CA0B0267377F000D53732 /* development-config.plist in Resources */,
 				398CA0A72673719200D53732 /* LaunchScreen.storyboard in Resources */,
 				398CA0A42673719200D53732 /* Assets.xcassets in Resources */,
+				398CA0B4267378AF00D53732 /* uat-config.plist in Resources */,
 				398CA0A22673719000D53732 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				398CA09F2673719000D53732 /* ViewController.swift in Sources */,
+				398CA0C52673807600D53732 /* AppEnvironment.swift in Sources */,
 				398CA09B2673719000D53732 /* AppDelegate.swift in Sources */,
 				398CA09D2673719000D53732 /* SceneDelegate.swift in Sources */,
 			);
@@ -319,6 +402,87 @@
 			};
 			name = Release;
 		};
+		398CA0BA26737C0F00D53732 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VHXHHCVH76;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		398CA0BB26737C0F00D53732 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = VHXHHCVH76;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		398CA0BE26737CC600D53732 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VHXHHCVH76;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		398CA0BF26737CC600D53732 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = VHXHHCVH76;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		398CA0C226737CD600D53732 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VHXHHCVH76;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		398CA0C326737CD600D53732 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = VHXHHCVH76;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -336,6 +500,33 @@
 			buildConfigurations = (
 				398CA0AC2673719200D53732 /* Debug */,
 				398CA0AD2673719200D53732 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		398CA0B926737C0F00D53732 /* Build configuration list for PBXLegacyTarget "development-target" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				398CA0BA26737C0F00D53732 /* Debug */,
+				398CA0BB26737C0F00D53732 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		398CA0BD26737CC600D53732 /* Build configuration list for PBXLegacyTarget "uat-target" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				398CA0BE26737CC600D53732 /* Debug */,
+				398CA0BF26737CC600D53732 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		398CA0C126737CD600D53732 /* Build configuration list for PBXLegacyTarget "release-target" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				398CA0C226737CD600D53732 /* Debug */,
+				398CA0C326737CD600D53732 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
